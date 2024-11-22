@@ -84,7 +84,7 @@ main {
   z-index: 100;
   color: var(--main-white-col);
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
@@ -105,44 +105,127 @@ main {
   place-items: center;
 }
 
-.navigation::after {
+/* .navigation::after {
 content: '';
 position: absolute;
-bottom: -12px;       /* Distance below the icons */
-width: calc(40px * 3 + 20px * 2 + 10px);  /* Width: icons + spacing + 10 pixels */
-height: 4px;         /* Bar thickness */
-background-color: #F7AFA3;  /* Bar color */
-border-radius: 2px;  /* Rounded corners */
-transition: transform 0.4s ease-in-out;  /* Smooth hover animation */
+bottom: -12px;
+width: calc(40px * 3 + 20px * 2 + 10px);
+height: 4px;
+background-color: #F7AFA3;
+border-radius: 2px;
+transition: transform 0.4s ease-in-out;
 }
 
 .navigation:hover::after {
-transform: translateY(-5px);  /* Slight upward movement on hover */
-}
+transform: translateY(-5px);
+} */
 
 .scroll-button {
-  position: absolute;
+  position: fixed;
   left: 50%;
+  font-weight: 800;
   transform: translateX(-50%);
-  bottom: 25%;
-  background-color: #ff69b4;
+  bottom: 21%;
+  background: linear-gradient(135deg, #FFB6C1, #ffaebd);
   color: white;
-  padding: 10px 20px;
-  font-size: 1rem;
+  padding: 20px 50px;
+  font-size: 1.3rem;
   text-align: center;
   text-decoration: none;
   border: none;
-  border-radius: 5px;
+  border-radius: 35px;
+  font-family: 'Baloo Bhai 2', sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 200;
+  animation: hover-up-down-btn 1.5s ease-in-out infinite;
 }
 
 .scroll-button:hover {
   transform: translateX(-50%) scale(1.1);
-  background-color: #ff85c0;
+  background: linear-gradient(to bottom, #FF8A9E, #FFB6C1);
+  box-shadow: 0px 6px 12px rgba(255, 136, 158, 0.6);
 }
+
+
+.scroll-heading {
+  position: fixed;
+  top: 6%; /* Places the heading 25% from the top */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 4rem; /* Adjust as needed */
+  font-weight: 900;
+  color: transparent;
+  background: linear-gradient(
+      219deg, 
+      #fff 19%, 
+      #ffbedf 40%,
+      #ff87c3 67%,
+      #ff69b4 88%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  letter-spacing: 20px;
+  color: #ff88c3;
+  text-align: center;
+  z-index: 200; /* Ensure it's above the background */
+  margin: 0;
+  animation: hover-up-down-txt 1.5s ease-in-out infinite;
+}
+
+
+.scroll-heading::before,
+.scroll-heading::after {
+    content: 'KIKO';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 00px;
+}
+
+.scroll-heading::before {
+    z-index: -1;
+    color: #ff69b4;
+    text-shadow: 
+        -1px -1px 0 #eeaece,
+        1px 1px 0 #c8a2ff,
+        3px 3px 0 #ff69b4,
+        5px 5px 20px rgba(243, 93, 236, 0.8);
+    animation: glitch 3s infinite alternate-reverse;
+}
+
+.scroll-heading::after {
+    z-index: -2;
+    color: #c8a2ff;
+    text-shadow: 
+        2px 2px 0 #ff69b4,
+        4px 4px 0 #ff69b4,
+        6px 6px 30px rgba(255, 99, 242, 0.6);
+    animation: glitch 2s infinite alternate;
+}
+
+
+@keyframes hover-up-down-btn {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0); /* Default position */
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px); /* Hover up by 10px */
+  }
+}
+
+@keyframes hover-up-down-txt {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0); /* Default position */
+  }
+  50% {
+    transform: translateX(-50%) translateY(-5px); /* Hover up by 5px */
+  }
+}
+
 
 @media (min-width: 768px) {
   .link_main {
@@ -171,12 +254,23 @@ transform: translateY(-5px);  /* Slight upward movement on hover */
   .navigation_ul {
     gap: 0.625rem;
   }
+
 }
 
 @media (max-width: 767px) {
   .bg img {
     width: 100%;
     height: auto;
+  }
+  .scroll-heading {
+    font-size: 2.5rem;
+    top: 13%;
+  }
+
+  .scroll-button {
+    font-size: 1rem;
+    padding: 8px 22px;
+    bottom: 30%;
   }
 }
 
